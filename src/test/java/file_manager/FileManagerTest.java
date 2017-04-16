@@ -62,6 +62,7 @@ public class FileManagerTest {
 	public void after() {
 		removeAll(path);
 		new File(path).delete();
+		new File(path.substring(0,path.length()-6)).delete();
 	}
 	
 	@Test

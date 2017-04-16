@@ -4,3 +4,5 @@
 target/
 
 InputOutput\.iml
+
+src/test/resources/file_manager/
