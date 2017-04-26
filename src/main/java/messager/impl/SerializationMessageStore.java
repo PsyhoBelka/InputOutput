@@ -11,7 +11,6 @@ import java.util.List;
 public class SerializationMessageStore implements MessageStore, Serializable {
 	
 	private String messageStoreFile;
-	private List <Message> messages = new ArrayList <>();
 	
 	public void setMessageStoreFile(String messageStoreFile) {
 		this.messageStoreFile = messageStoreFile;
