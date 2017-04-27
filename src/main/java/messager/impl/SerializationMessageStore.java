@@ -10,10 +10,10 @@ import java.util.List;
 
 public class SerializationMessageStore implements MessageStore, Serializable {
 	
-	private String messageStoreFile;
+	private String messagesStoreFile;
 	
-	public void setMessageStoreFile(String messageStoreFile) {
-		this.messageStoreFile = messageStoreFile;
+	public void setMessagesStoreFile(String messagesStoreFile) {
+		this.messagesStoreFile = messagesStoreFile;
 	}
 	
 	
@@ -23,7 +23,7 @@ public class SerializationMessageStore implements MessageStore, Serializable {
 		messagesList = read();
 		messagesList.add(message);
 		
-		FileOutputStream fileOutputStream = new FileOutputStream(messageStoreFile);
+		FileOutputStream fileOutputStream = new FileOutputStream(messagesStoreFile);
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 		
 		objectOutputStream.writeObject(messagesList);
@@ -34,8 +34,8 @@ public class SerializationMessageStore implements MessageStore, Serializable {
 	@Override
 	public List <Message> read() throws IOException, ClassNotFoundException {
 		List <Message> messagesList;
-		if (new File(messageStoreFile).exists()) {
-			FileInputStream fileInputStream = new FileInputStream(messageStoreFile);
+		if (new File(messagesStoreFile).exists()) {
+			FileInputStream fileInputStream = new FileInputStream(messagesStoreFile);
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 			
 			messagesList = (List <Message>) objectInputStream.readObject();
@@ -52,7 +52,7 @@ public class SerializationMessageStore implements MessageStore, Serializable {
 		messagesList = read();
 		messagesList.addAll(list);
 		
-		FileOutputStream fileOutputStream = new FileOutputStream(messageStoreFile);
+		FileOutputStream fileOutputStream = new FileOutputStream(messagesStoreFile);
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 		objectOutputStream.writeObject(messagesList);
 		objectOutputStream.flush();

@@ -18,7 +18,7 @@ public class SerializationMessageStoreTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		serializationMessageStore.setMessageStoreFile(messagesStoreFile);
+		serializationMessageStore.setMessagesStoreFile(messagesStoreFile);
 		new File("src\\test\\resources\\messager").mkdirs();
 		
 		
