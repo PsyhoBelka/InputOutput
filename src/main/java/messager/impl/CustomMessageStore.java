@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CustomMessageStore implements MessageStore {
 	
-	private String messagesStoreFile = "src\\test\\resources\\messager\\custMess.dat";
+	private String messagesStoreFile;
 	
 	public void setMessagesStoreFile(String messagesStoreFile) {
 		this.messagesStoreFile = messagesStoreFile;
