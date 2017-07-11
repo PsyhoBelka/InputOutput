@@ -1,5 +1,6 @@
 package messager.impl;
 
+import messager.AppendableObjectOutputStream;
 import messager.MessageStore;
 import messager.entity.Message;
 
@@ -19,43 +20,46 @@ public class SerializationMessageStore implements MessageStore, Serializable {
 	
 	@Override
 	public void persist(Message message) throws IOException, ClassNotFoundException {
-		List <Message> messagesList;
-		messagesList = read();
-		messagesList.add(message);
 		
-		FileOutputStream fileOutputStream = new FileOutputStream(messagesStoreFile);
-		ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+		if (new File(messagesStoreFile).exists()) {
+			FileOutputStream fileOutputStream = new FileOutputStream(messagesStoreFile, true);
+			AppendableObjectOutputStream appendableObjectOutputStream = new AppendableObjectOutputStream(fileOutputStream);
+			
+			appendableObjectOutputStream.writeObject(message);
+			appendableObjectOutputStream.close();
+		} else {
+			FileOutputStream fileOutputStream = new FileOutputStream(messagesStoreFile, true);
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+			
+			objectOutputStream.writeObject(message);
+			objectOutputStream.close();
+		}
 		
-		objectOutputStream.writeObject(messagesList);
-		objectOutputStream.flush();
-		objectOutputStream.close();
 	}
+	
 	
 	@Override
 	public List <Message> read() throws IOException, ClassNotFoundException {
-		List <Message> messagesList;
+		
+		List <Message> messagesList = new ArrayList <>();
+		
 		if (new File(messagesStoreFile).exists()) {
 			FileInputStream fileInputStream = new FileInputStream(messagesStoreFile);
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 			
-			messagesList = (List <Message>) objectInputStream.readObject();
+			while (fileInputStream.available() > 0) {
+				messagesList.add((Message) objectInputStream.readObject());
+			}
+			
 			objectInputStream.close();
-		} else {
-			messagesList = new ArrayList <>();
 		}
 		return messagesList;
 	}
 	
 	@Override
 	public void persist(Collection <Message> list) throws IOException, ClassNotFoundException {
-		List <Message> messagesList;
-		messagesList = read();
-		messagesList.addAll(list);
-		
-		FileOutputStream fileOutputStream = new FileOutputStream(messagesStoreFile);
-		ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-		objectOutputStream.writeObject(messagesList);
-		objectOutputStream.flush();
-		objectOutputStream.close();
+		for (Message message : list) {
+			persist(message);
+		}
 	}
 }
