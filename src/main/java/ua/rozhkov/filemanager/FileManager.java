@@ -1,4 +1,4 @@
-package file_manager;
+package ua.rozhkov.filemanager;
 
 import java.io.File;
 import java.io.FileInputStream;

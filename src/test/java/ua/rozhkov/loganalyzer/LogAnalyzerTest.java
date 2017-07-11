@@ -1,4 +1,4 @@
-package log_analyzer;
+package ua.rozhkov.loganalyzer;
 
 import org.junit.After;
 import org.junit.Before;

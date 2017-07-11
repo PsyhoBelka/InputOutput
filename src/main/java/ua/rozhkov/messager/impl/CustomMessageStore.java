@@ -1,7 +1,7 @@
-package messager.impl;
+package ua.rozhkov.messager.impl;
 
-import messager.MessageStore;
-import messager.entity.Message;
+import ua.rozhkov.messager.MessageStore;
+import ua.rozhkov.messager.entity.Message;
 
 import java.io.*;
 import java.time.LocalDate;

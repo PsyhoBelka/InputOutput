@@ -1,6 +1,6 @@
-package messager.impl;
+package ua.rozhkov.messager.impl;
 
-import messager.entity.Message;
+import ua.rozhkov.messager.entity.Message;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,12 +15,12 @@ import static org.junit.Assert.*;
 public class CustomMessageStoreTest {
 	
 	private CustomMessageStore customMessageStore=new CustomMessageStore();
-	private String messagesStoreFile = "src\\test\\resources\\messager\\custMess.dat";
+	private String messagesStoreFile = "src\\test\\resources\\ua.rozhkov.messager\\custMess.dat";
 	
 	@Before
 	public void before(){
 		customMessageStore.setMessagesStoreFile(messagesStoreFile);
-		new File("src\\test\\resources\\messager").mkdirs();
+		new File("src\\test\\resources\\ua.rozhkov.messager").mkdirs();
 		if (new File(messagesStoreFile).exists()){
 			new File(messagesStoreFile).delete();
 		}
@@ -29,7 +29,7 @@ public class CustomMessageStoreTest {
 	@After
 	public void after(){
 		new File(messagesStoreFile).delete();
-		new File("src\\test\\resources\\messager").delete();
+		new File("src\\test\\resources\\ua.rozhkov.messager").delete();
 	}
 	
 	@Test

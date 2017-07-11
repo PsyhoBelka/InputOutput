@@ -1,6 +1,6 @@
-package messager.impl;
+package ua.rozhkov.messager.impl;
 
-import messager.entity.Message;
+import ua.rozhkov.messager.entity.Message;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,12 +14,12 @@ import java.util.List;
 public class SerializationMessageStoreTest {
 	
 	private SerializationMessageStore serializationMessageStore = new SerializationMessageStore();
-	private String messagesStoreFile = "src\\test\\resources\\messager\\serMess.dat";
+	private String messagesStoreFile = "src\\test\\resources\\ua.rozhkov.messager\\serMess.dat";
 	
 	@Before
 	public void setUp() throws Exception {
 		serializationMessageStore.setMessagesStoreFile(messagesStoreFile);
-		new File("src\\test\\resources\\messager").mkdirs();
+		new File("src\\test\\resources\\ua.rozhkov.messager").mkdirs();
 		
 		
 		Message message0 = new Message(0, LocalDate.now(), "setup message");
@@ -29,7 +29,7 @@ public class SerializationMessageStoreTest {
 	@After
 	public void after() {
 		new File(messagesStoreFile).delete();
-		new File("src\\test\\resources\\messager").delete();
+		new File("src\\test\\resources\\ua.rozhkov.messager").delete();
 	}
 	
 	@Test

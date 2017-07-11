@@ -1,4 +1,4 @@
-package messager.entity;
+package ua.rozhkov.messager.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;

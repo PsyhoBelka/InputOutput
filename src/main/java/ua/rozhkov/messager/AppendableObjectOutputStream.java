@@ -1,4 +1,4 @@
-package messager;
+package ua.rozhkov.messager;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;

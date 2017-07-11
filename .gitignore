@@ -5,4 +5,4 @@ target/
 
 InputOutput\.iml
 
-src/test/resources/file_manager/
+src/test/resources/ua.rozhkov.filemanager/

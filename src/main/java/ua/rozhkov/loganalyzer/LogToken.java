@@ -1,4 +1,4 @@
-package log_analyzer;
+package ua.rozhkov.loganalyzer;
 
 import java.time.LocalDateTime;
 

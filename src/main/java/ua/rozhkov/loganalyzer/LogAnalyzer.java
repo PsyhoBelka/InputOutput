@@ -1,4 +1,4 @@
-package log_analyzer;
+package ua.rozhkov.loganalyzer;
 
 import java.io.File;
 import java.io.FileReader;

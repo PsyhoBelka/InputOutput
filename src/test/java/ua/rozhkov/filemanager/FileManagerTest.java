@@ -1,4 +1,4 @@
-package file_manager;
+package ua.rozhkov.filemanager;
 
 import org.junit.After;
 import org.junit.Before;
@@ -14,7 +14,7 @@ import static org.junit.Assert.assertTrue;
 
 public class FileManagerTest {
 	
-	private String path = "src/test/resources/file_manager/dirs2";
+	private String path = "src/test/resources/ua.rozhkov.filemanager/dirs2";
 	private List dirsList;
 	private List filesList;
 	

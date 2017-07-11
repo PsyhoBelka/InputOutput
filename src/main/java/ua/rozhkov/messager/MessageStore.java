@@ -1,6 +1,6 @@
-package messager;
+package ua.rozhkov.messager;
 
-import messager.entity.Message;
+import ua.rozhkov.messager.entity.Message;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
