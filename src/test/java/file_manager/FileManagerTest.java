@@ -60,9 +60,9 @@ public class FileManagerTest {
 	
 	@After
 	public void after() {
-		removeAll(path);
+		FileManager.removeAll(path);
 		new File(path).delete();
-		new File(path.substring(0,path.length()-6)).delete();
+		new File(path.substring(0, path.length() - 6)).delete();
 	}
 	
 	@Test
@@ -76,27 +76,40 @@ public class FileManagerTest {
 	}
 	
 	@Test
-	public void testCopy() throws Exception {
+	public void testCopyFiles() throws Exception {
 		FileManager.copy(path + "/dir1/file1-1.txt", path + "/dir1/file1-1-copy.txt");
 		assertTrue(new File(path + "/dir1/file1-1-copy.txt").exists());
 	}
 	
 	@Test
-	public void testMove() throws Exception {
-		FileManager.move(path + "/dir2/file2-1.txt", path + "/dir2/file2-1-move.txt");
-		assertTrue(new File(path + "/dir2/file2-1-move.txt").exists());
+	public void testCopyFileToDir() throws Exception {
+		FileManager.copy(path + "/dir1/file1-1.txt", path + "/dir1/copy1");
+		assertTrue(new File(path + "/dir1/copy1/file1-1.txt").exists());
+		//		D:/TMP
+		//		FileManager.copy("D:/TMP/1.jpg", "D:/TMP/1");
+		//		assertTrue(new File("D:/TMP/1.jpg").exists());
 	}
 	
-	private void removeAll(String path) {
-		if (new File(path).isDirectory()) {
-			for (File element : new File(path).listFiles()) {
-				if (element.isFile()) {
-					element.delete();
-				} else {
-					removeAll(element.getPath());
-				}
-				element.delete();
-			}
-		}
+	@Test
+	public void testCopyDirToDir() throws Exception {
+		FileManager.copy(path + "/dir1/subdir1-1", path + "/dir1/copy2");
+		assertTrue(new File(path + "/dir1/copy2/subdir1-1//file1-1.txt").exists());
+	}
+	
+	@Test
+	public void testMoveFiles() throws Exception {
+		FileManager.move(path + "/dir2/file2-1.txt", path + "/move1");
+		assertTrue(new File(path + "/move1/file2-1.txt").exists());
+	}
+	
+	@Test
+	public void testMoveDirs() throws Exception {
+		FileManager.move(path + "/dir1/subdir1-1", path + "/move2");
+		assertTrue(new File(path + "/move2/subdir1-1/file1-3.txt").exists());
+	}
+	
+	@Test
+	public void testRemove() {
+		FileManager.removeAll(path+"/dir3");
 	}
 }
