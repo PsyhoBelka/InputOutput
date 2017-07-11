@@ -7,11 +7,10 @@ import java.io.IOException;
 
 public class FileManager {
 	
-	private static File temp;
-	
 	public static int calculateDirs(String path) throws IOException {
 		int dirsCounter = 0;
 		File[] tempFilesList;
+		File temp;
 		
 		temp = new File(path);
 		if (temp.isDirectory()) {
@@ -36,6 +35,8 @@ public class FileManager {
 	}
 	
 	public static int calculateFiles(String path) throws IOException {
+		
+		File temp;
 		int filesCounter = 0;
 		File[] tempFilesList;
 		temp = new File(path);
