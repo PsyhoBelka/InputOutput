@@ -19,7 +19,6 @@ public class FileManager {
 				for (File aTempFilesList : tempFilesList) {
 					if (aTempFilesList.isDirectory()) {
 						dirsCounter++;
-						
 					}
 				}
 				for (File aTempFilesList : tempFilesList) {
@@ -47,7 +46,6 @@ public class FileManager {
 				for (File aTempFilesList : tempFilesList) {
 					if (!aTempFilesList.isDirectory()) {
 						filesCounter++;
-						
 					}
 				}
 				for (File aTempFilesList : tempFilesList) {
@@ -69,31 +67,19 @@ public class FileManager {
 		if ((new File(from).exists())) {
 			if ((new File(from).isFile())) {
 				
-				/*if (!new File(to).exists()) {
-					new File(to).createNewFile();
-				}*/
 				new File(to).mkdirs();
 				File toFile = new File(to + '/' + new File(from).getName());
-				//				toFile.mkdirs();
 				toFile.createNewFile();
-				//				FileReader fileReader = new FileReader(from);
-				//				FileWriter fileWriter = new FileWriter(toFile);
 				FileInputStream fileInputStream = new FileInputStream(from);
 				FileOutputStream fileOutputStream = new FileOutputStream(toFile);
-				/*while (fileReader.ready()) {
-					fileWriter.write(fileReader.read());
-				}*/
 				while (fileInputStream.available() > 0) {
 					fileOutputStream.write(fileInputStream.read());
 				}
 				
-				//				fileReader.close();
-				//				fileWriter.close();
 				fileInputStream.close();
 				fileOutputStream.close();
 				status = true;
 			} else {
-				//new File(to).mkdirs();
 				new File(to).mkdir();
 				File[] tempFileList;
 				tempFileList = (new File(from).listFiles());
@@ -101,7 +87,6 @@ public class FileManager {
 				for (File file : tempFileList) {
 					copy(file.getPath(), to + '/' + new File(from).getName());
 				}
-				//copy(from + '/' + new File(from).getName(), to + '/' + new File(from).getName());
 				status = true;
 			}
 		}
@@ -127,12 +112,14 @@ public class FileManager {
 	protected static void removeAll(String path) {
 		if (new File(path).isDirectory()) {
 			for (File element : new File(path).listFiles()) {
-				if (element.isFile()) {
+				if (element != null) {
+					if (element.isFile()) {
+						element.delete();
+					} else {
+						removeAll(element.getPath());
+					}
 					element.delete();
-				} else {
-					removeAll(element.getPath());
 				}
-				element.delete();
 			}
 		}
 	}
